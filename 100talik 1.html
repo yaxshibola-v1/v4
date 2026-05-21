@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misol va Masalalar Yechish Metodikasi — 100 ta Interaktiv Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; }
+        .watermark-bg {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'><text fill='rgba(150, 150, 150, 0.03)' font-size='14' font-family='sans-serif' x='20' y='120' transform='rotate(-30 20 120)'>Metodika Test Tizimi</text></svg>");
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col watermark-bg transition-colors duration-300">
+
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-brand-500/20">
+                <i class="fa-solid fa-calculator text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Masalalar Yechish Metodikasi</h1>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Professional Test Platformasi • 100 ta Savol</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <a href="https://t.me/yomonboIa" target="_blank" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-brand-50 hover:bg-brand-100 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl text-xs font-bold text-brand-600 dark:text-brand-400 transition-all">
+                <i class="fa-brands fa-telegram"></i>
+                <span>Tuzuvchi: @yomonboIa</span>
+            </a>
+            
+            <button id="themeToggleBtn" onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-slate-600 dark:text-slate-300 transition-all">
+                <i id="themeIcon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-6 relative">
+
+        <section class="w-full lg:w-80 flex flex-col gap-5 shrink-0">
+            
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 flex items-center justify-between">
+                    <span>Natijalar</span>
+                    <i class="fa-solid fa-chart-simple text-brand-500"></i>
+                </h2>
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl text-center">
+                        <p class="text-xs text-slate-400 font-medium">To'g'ri</p>
+                        <p id="correctCountText" class="text-xl font-bold text-emerald-500">0</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl text-center">
+                        <p class="text-xs text-slate-400 font-medium">Noto'g'ri</p>
+                        <p id="wrongCountText" class="text-xl font-bold text-rose-500">0</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
+                        <span>O'zlashtirish Progress:</span>
+                        <span id="progressBarPercentage">0%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div id="progressBarFill" class="h-full bg-brand-500 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between text-[11px] text-slate-400 mt-2">
+                        <span id="answeredRatioText">Yechildi: 0 / 100</span>
+                        <span id="bookmarkCountText">Yodda: 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex flex-col gap-4">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center justify-between">
+                    <span>Sozlamalar</span>
+                    <i class="fa-solid fa-sliders text-brand-500"></i>
+                </h2>
+                <div class="flex bg-slate-100 dark:bg-slate-900 p-1 rounded-xl">
+                    <button id="modeStudyBtn" onclick="changeQuizMode('study')" class="flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-800 text-brand-500 shadow-sm">O'rganish</button>
+                    <button id="modeExamBtn" onclick="changeQuizMode('exam')" class="flex-1 py-2 text-xs font-bold rounded-lg text-slate-500">Imtihon</button>
+                </div>
+                <div id="examTimerContainer" class="hidden">
+                    <div class="bg-rose-50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/50 rounded-xl p-3 flex items-center justify-between text-rose-700 dark:text-rose-400">
+                        <span class="text-xs font-semibold"><i class="fa-solid fa-hourglass-half animate-spin mr-1"></i> Qolgan vaqt:</span>
+                        <span id="examTimerText" class="font-mono text-sm font-bold">60:00</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Mavzular bo'yicha filtr:</label>
+                    <select id="categoryFilter" onchange="filterQuestions()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 text-xs font-semibold focus:outline-none text-slate-700 dark:text-slate-300">
+                        <option value="all">Barchasi (100 ta test)</option>
+                        <option value="planimetriya">Planimetriya (Geometriya)</option>
+                        <option value="algebra">Algebra va Tenglamalar</option>
+                        <option value="arifmetika">Arifmetika va Sonlar nazariyasi</option>
+                        <option value="metodika">Yechish metodikasi nazariyasi</option>
+                        <option value="bookmarked">Yodda saqlanganlar (★)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Savollardan qidirish:</label>
+                    <div class="relative">
+                        <input id="searchInput" oninput="filterQuestions()" type="text" placeholder="Kalit so'zni yozing..." class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-9 pr-4 py-2 text-xs font-semibold focus:outline-none text-slate-700 dark:text-slate-300">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-[11px] text-slate-400"></i>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="shuffleCurrentQuestions()" class="p-2.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5"><i class="fa-solid fa-shuffle"></i> Aralashtirish</button>
+                    <button onclick="resetQuizState()" class="p-2.5 bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/20 text-rose-600 font-semibold text-xs rounded-xl flex items-center justify-center gap-1.5"><i class="fa-solid fa-arrow-rotate-left"></i> Tozalash</button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm flex flex-col flex-1 min-h-[250px] lg:max-h-[420px]">
+                <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3 flex items-center justify-between">
+                    <span>Savollar xaritasi</span>
+                    <span id="filteredCountBadge" class="text-xs bg-slate-100 dark:bg-slate-900 px-2 py-0.5 rounded-full font-bold">100/100</span>
+                </h2>
+                <div id="questionsMapContainer" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-1.5 overflow-y-auto flex-1 pr-1 custom-scrollbar"></div>
+            </div>
+        </section>
+
+        <section class="flex-1 flex flex-col gap-5">
+            <div class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-sm transition-all flex flex-col gap-6 relative overflow-hidden">
+                <div class="flex items-center justify-between gap-3 z-10">
+                    <div class="flex items-center gap-2">
+                        <span id="questionIndexBadge" class="px-3 py-1 bg-brand-500 text-white text-xs font-bold rounded-full">SAVOL 1</span>
+                        <span id="questionSourceBadge" class="px-3 py-1 bg-slate-100 dark:bg-slate-900 text-slate-500 text-xs font-semibold rounded-full max-w-[200px] truncate">Mavzu xossasi</span>
+                    </div>
+                    <button id="bookmarkBtn" onclick="toggleBookmarkActiveQuestion()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-300 transition-all">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </button>
+                </div>
+                <div class="z-10">
+                    <h3 id="questionTextDisplay" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed">Yuklanmoqda...</h3>
+                </div>
+                <div id="optionsListContainer" class="flex flex-col gap-3 z-10"></div>
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-700/50 pt-5 mt-4 z-10">
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button id="prevBtn" onclick="navigateToQuestion(-1)" class="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 font-bold text-xs flex items-center justify-center gap-1.5"><i class="fa-solid fa-arrow-left"></i> Oldingisi</button>
+                        <button id="nextBtn" onclick="navigateToQuestion(1)" class="flex-1 sm:flex-initial px-4 py-2.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-slate-800 dark:text-white font-bold text-xs flex items-center justify-center gap-1.5">Keyingisi <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                    <button id="examSubmitBtn" onclick="finishExamPrompt()" class="hidden w-full sm:w-auto px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-sm"><i class="fa-solid fa-square-check"></i> Imtihonni yakunlash</button>
+                </div>
+            </div>
+
+            <div id="explanationCard" class="bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100/50 dark:border-blue-900/30 rounded-3xl p-6 shadow-sm flex flex-col gap-2">
+                <div class="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                    <i class="fa-solid fa-circle-info text-sm"></i>
+                    <h4 class="text-xs font-bold uppercase tracking-wider">Metodik va Ilmiy Manba</h4>
+                </div>
+                <div class="bg-white dark:bg-slate-900/50 rounded-xl p-4 border border-blue-100 dark:border-blue-950/50">
+                    <p id="explanationTextDisplay" class="text-xs sm:text-sm font-semibold italic text-slate-600 dark:text-slate-300"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="examResultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 text-center shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-950/50 text-emerald-500 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Imtihon Yakunlandi!</h3>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Sizning natijalaringiz quyidagicha:</p>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-emerald-50 dark:bg-emerald-950/30 p-3 rounded-xl">
+                    <p class="text-xs font-medium text-emerald-600">To'g'ri</p>
+                    <p id="modalCorrect" class="text-xl font-black text-emerald-500">0</p>
+                </div>
+                <div class="bg-rose-50 dark:bg-rose-950/30 p-3 rounded-xl">
+                    <p class="text-xs font-medium text-rose-600">Noto'g'ri</p>
+                    <p id="modalIncorrect" class="text-xl font-black text-rose-500">0</p>
+                </div>
+            </div>
+            <button onclick="closeModalAndReset()" class="w-full py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all">Qayta boshlash</button>
+        </div>
+    </div>
+
+    <script>
+        // 100 ta to'liq savollar bazasi (Planimetriya, Algebra, Arifmetika va Metodika)
+        const quizData = [
+            { id: 1, q: "Aylananing 1/n bo'lagi necha gradusli yoy bo‘ladi?", answer: "360°/n", options: ["360°/n", "180°/n", "90°/n", "360°"], source: "Yoy o'lchovi qoidasi", cat: "planimetriya" },
+            { id: 2, q: "Radiuslari uzunliklarining nisbati 1:3 kabi bo‘lgan aylanalar uzunliklari nisbatini toping.", answer: "1:3", options: ["1:3", "2:3", "1:4", "1:5"], source: "L = 2πR formulasiga asosan", cat: "planimetriya" },
+            { id: 3, q: "Radiuslari 25 va 35 bo'lgan aylanalar bir-biriga urinadi. Tashqi va ichki urinishlar yuz bergan hollar uchun aylanalar markazlari orasidagi masofani toping.", answer: "60; 10", options: ["60; 10", "40; 35", "35; 10", "35; 15"], source: "R+r va R-r munosabatlari", cat: "planimetriya" },
+            { id: 4, q: "Radiusi 12 ga va markaziy burchagi α ga teng bo'lgan doiraviy sektorning yoyi aylana shakliga keltirilgan. Shu aylananing radiusini aniqlang.", answer: "4", options: ["3,5", "3,2", "4,5", "4"], source: "Sektor va aylana yoyi tengligi", cat: "planimetriya" },
+            { id: 5, q: "Uzunligi 24π ga teng bo'lgan aylananing 90° li yoyni tortib turuvchi vatarining uzunligi qancha?", answer: "12√2", options: ["15", "16", "12√2", "13"], source: "To'g'ri burchakli uchburchak xossasi", cat: "planimetriya" },
+            { id: 6, q: "Ushbu iboralarning qaysi biri noto‘g‘ri?", answer: "Diametrning yarmiga tiralgan ichki burchak 90° bo'ladi.", options: ["Diametrning yarmiga tiralgan ichki burchak 90° bo'ladi.", "Uchi aylanada yotgan, tomonlari aylana vatarlaridan iborat burchak ichki chizilgan burchak deyiladi", "Aylanaga ichki chizilgan burchak o‘zi tiralgan yoyning yarmi bilan o'lchanadi", "Bitta yoyga tiralgan barcha ichki chizilgan burchaklar o'zaro tengdir"], source: "Geometriya asosiy teoremalari", cat: "planimetriya" },
+            { id: 7, q: "Teng yonli to‘g‘ri burchakli uchburchakning yuzi 8 ga teng bo‘lsa, shu uchburchakka tashqi chizilgan aylana uzunligini hisoblang.", answer: "4π√2", options: ["4π√2", "2π√2", "6π", "8π"], source: "Gipotenuza d=2R ekanligidan", cat: "planimetriya" },
+            { id: 8, q: "P nuqta radiusi 6 sm bo'lgan aylananing markazidan 12 sm uzoqlikda joylashgan. P nuqtadan urinma va kesuvchi o'tkazilgan. Urinma va kesuvchi orasidagi o'tkir burchakni toping.", answer: "30°", options: ["30°", "45°", "60°", "15°"], source: "30° li burchak qarshisidagi katet xossasi", cat: "planimetriya" },
+            { id: 9, q: "Har birining diametri 50 ga teng bo'lgan uchta quvur suv o'tkazish qobiliyati shu uchta quvurnikiga teng bo'lgan bitta quvur bilan almashtiriladi. Katta quvurning diametrini toping.", answer: "50√3", options: ["50√3", "100", "150", "70"], source: "Yuzalar yig'indisi S=S1+S2+S3", cat: "planimetriya" },
+            { id: 10, q: "Aylananing A nuqtasidan o'tkazilgan AB va AC vatarlarning uzunliklari mos ravishda 5 va 12 ga teng. Agar ularning ikkinchi uchlari tutashtirilsa, yuzi 15 ga teng uchburchak hosil bo'ladi. AB va AC vatarlar orasidagi o'tkir burchakni toping.", answer: "30°", options: ["30°", "45°", "60°", "75°"], source: "S = 0.5 * a * b * sin(α) formulasidan", cat: "planimetriya" },
+            { id: 11, q: "Ikkita doiraning umumiy vatari 60° va 90° li yoylarni tortib turadi. Kichik doira yuzining katta doira yuziga nisbatini toping.", answer: "1:2", options: ["1:3", "1:2", "2:3", "1:4"], source: "Radiuslar kvadratlari nisbati", cat: "planimetriya" },
+            { id: 12, q: "Radiusi R ga teng bo'lgan doiraning markazidan bir tomonda ikkita bir-biriga parallel vatar o'tkazildi. Bu vatarlardan biri 60° li, ikkinchisi 120° li yoyni tortib turadi. Parallel vatarlar orasida joylashgan kesimning yuzini toping.", answer: "R²√3/4", options: ["R²√3/4", "R²/2", "R²√3/2", "R²(π-1)"], source: "Sektorlar yuzalari ayirmasi", cat: "planimetriya" },
+            { id: 13, q: "To'g'ri chiziq doiraning aylanasini uzunliklarining nisbati 1:3 kabi bo‘lgan ikki yoyga ajratadi. Bu chiziq doiraning yuzini qanday nisbatda bo‘ladi?", answer: "(π-2)/(3π+2)", options: ["(π-2)/(3π+2)", "1:9", "1:4", "2:5"], source: "Segment yuzining doira yuziga nisbati", cat: "planimetriya" },
+            { id: 14, q: "Asosidagi burchagi 30° ga teng bo'lgan teng yonli uchburchakka ichki va tashqi chizilgan aylanalar radiuslarining nisbatini toping.", answer: "2√3-3", options: ["2√3-3", "√3/2", "1:2", "√3-1"], source: "r/R darslik formulasi", cat: "planimetriya" },
+            { id: 15, q: "To‘g‘ri burchakli trapetsiyaning asoslari 6 va 4 ga teng. Unga ichki chizilgan aylananing uzunligini toping.", answer: "4.8π", options: ["4.8π", "5π", "4π", "6π"], source: "Trapetsiyaga ichki chizilgan aylana xossasi", cat: "planimetriya" },
+            { id: 16, q: "To‘rtburchak uchta ketma-ket tomonlarining uzunliklari 2, 3 va 4 ga, unga ichki chizilgan aylananing radiusi 1,2 ga teng bo'lsa, to'rtburchak yuzini toping.", answer: "7,2", options: ["7,2", "6,8", "7,8", "8,2"], source: "S = p * r yarim perimetr orqali", cat: "planimetriya" },
+            { id: 17, q: "Doiraga ichki chizilgan muntazam uchburchakning yuzi unga ichki chizilgan kvadrat yuzidan 18,5 ga kam. Shu doiraga ichki chizilgan muntazam oltiburchakning yuzini toping.", answer: "74", options: ["74", "65", "80", "111"], source: "Uchburchak, kvadrat va oltiburchak yuzalar bog'liqligi", cat: "planimetriya" },
+            { id: 18, q: "Tomonlarining uzunligi butun son bilan ifodalangan, bir tomoni 6 sm va qolgan ikki tomoni yig'indisi 15 sm ga teng bo'lgan nechta turli uchburchak yasash mumkin?", answer: "3", options: ["3", "2", "4", "5"], source: "Uchburchak tengsizligi qoidasi", cat: "planimetriya" },
+            { id: 19, q: "Tomonining uzunligi 12 sm bo‘lgan muntazam uchburchak ichidagi ixtiyoriy nuqtadan uning tomonlarigacha bo'lgan masofalar yig'indisi necha santimetr?", answer: "6√3", options: ["6√3 sm", "5√3 sm", "6", "12"], source: "H = h1 + h2 + h3 balandlikka tengligi", cat: "planimetriya" },
+            { id: 20, q: "Muntazam uchburchakning ichidagi ixtiyoriy nuqtadan uning tomonlarigacha bo'lgan masofalar yig'indisi 3√3 ga teng. Uchburchakning yuzini toping.", answer: "9√3", options: ["9√3", "3", "2", "4"], source: "S = H²/√3 formulasidan", cat: "planimetriya" },
+            { id: 21, q: "Uchburchakning tomonlari 4, 5 va 6 sm. 4 sm li tomonning 6 sm li tomondagi proyeksiyasi necha santimetr?", answer: "2,25", options: ["2,25", "1,5", "1,25", "2,5"], source: "Kosinuslar teoremasi tatbiqi", cat: "planimetriya" },
+            { id: 22, q: "Teng yonli to'g'ri burchakli uchburchakning o'tkir burchagi bissektrisasi qarshisidagi katetni to'g'ri burchak uchidan hisoblaganda qanday nisbatda bo'ladi?", answer: "1:√2", options: ["1:√2", "1 : 2", "2 : 1", "√2:1"], source: "Bissektrisa xossasiga ko'ra", cat: "planimetriya" },
+            { id: 23, q: "Uchburchak tomonlarining uzunliklari 6, 9 va 12. Uning katta burchagi bissektrisasining qarshi tomonda hosil qilgan katta kesmasining uzunligini toping.", answer: "7,2", options: ["7,2", "4,8", "6,8", "8,4"], source: "Mutanosib kesmalar xossasi", cat: "planimetriya" },
+            { id: 24, q: "ABC uchburchakda AB=6, BC=7, AC=5. O'tkir burchakli uchburchakning eng kichik balandligi uzunligini toping.", answer: "2√6", options: ["2√6", "4", "3√2", "5"], source: "Geron formulasi va h = 2S/a", cat: "planimetriya" },
+            { id: 25, q: "Uchburchakning tomonlari 11 va 23 ga, uchinchi tomoniga tushirilgan medianasi 10 ga teng. Uchburchakning uchinchi tomonini toping.", answer: "30", options: ["30", "15", "25", "28"], source: "Mediana formulasi: 4m² = 2a² + 2b² - c²", cat: "planimetriya" },
+            { id: 26, q: "Uchburchakning o‘zaro 120° burchak hosil qiluvchi ikki tomoni uzunliklari farqi 1 dm ga teng. Agar uchinchi tomoni 13 dm ga teng bo’lsa, uchburchakning perimetrini toping.", answer: "28 dm", options: ["28 dm", "26 dm", "30 dm", "32 dm"], source: "Kosinuslar teoremasi yordamida", cat: "planimetriya" },
+            { id: 27, q: "Teng yonli uchburchakning asosi 4√2 sm, unga tushirilgan mediana 2 sm bo‘lsa, yon tomoniga tushirilgan mediana uzunligini toping.", answer: "5 sm", options: ["5 sm", "4 sm", "6 sm", "3.5 sm"], source: "Mediana xossalari", cat: "planimetriya" },
+            { id: 28, q: "To‘g‘ri burchakli uchburchak to‘g‘ri burchagining bissektrisasi gipotenuza bilan 75° li burchak hosil qiladi. Uchburchakning o‘tkir burchaklarini toping.", answer: "30° va 60°", options: ["30° va 60°", "45° va 45°", "15° va 75°", "20° va 70°"], source: "Uchburchak burchaklar yig'indisi", cat: "planimetriya" },
+            { id: 29, q: "To'g'ri burchakli uchburchakning o'tkir burchagi bissektrisasi shu burchak qarshisidagi katetni 4 va 5 sm li kesmalarga ajratadi. Gipotenuza uzunligini toping.", answer: "15 sm", options: ["15 sm", "12 sm", "13 sm", "16 sm"], source: "Pifagor teoremasi va bissektrisa xossasi", cat: "planimetriya" },
+            { id: 30, q: "To'g'ri burchakli uchburchakning gipotenuzasiga tushirilgan balandligi va medianasi mos ravishda 4 va 5 sm ga teng. Katetlarining kichigini toping.", answer: "2√5 sm", options: ["2√5 sm", "4 sm", "5 sm", "3√5 sm"], source: "Gipotenuza c = 2m = 10, h=4", cat: "planimetriya" },
+            
+            // Algebra & Equations
+            { id: 31, q: "x² - 5x + 6 = 0 tenglamaning ildizlari ko'paytmasini toping.", answer: "6", options: ["6", "5", "-5", "-6"], source: "Viyet teoremasiga ko'ra c/a", cat: "algebra" },
+            { id: 32, q: "√(x - 2) = 3 tenglamaning ildizini aniqlang.", answer: "11", options: ["11", "5", "8", "14"], source: "Kvadratga ko'tarish orqali x-2=9", cat: "algebra" },
+            { id: 33, q: "Soddalashtiring: (a² - b²) / (a - b)", answer: "a + b", options: ["a + b", "a - b", "ab", "a² + b²"], source: "Qisqa ko'paytirish formulalari", cat: "algebra" },
+            { id: 34, q: "3^(x+1) = 27 tenglamaning ildizi nechaga teng?", answer: "2", options: ["2", "3", "1", "4"], source: "3^(x+1) = 3³ dan x+1=3", cat: "algebra" },
+            { id: 35, q: "log₂x = 4 bo'lsa, x ni toping.", answer: "16", options: ["16", "8", "4", "32"], source: "Logarifm ta'rifiga ko'ra 2⁴", cat: "algebra" },
+            { id: 36, q: "Aritmetik progressiyada a₁ = 3, d = 2 bo'lsa, a₁₀ ni toping.", answer: "21", options: ["21", "23", "19", "20"], source: "an = a1 + (n-1)d", cat: "algebra" },
+            { id: 37, q: "Geometrik progressiyada b₁ = 2, q = 3 bo'lsa, dastlabki 3 ta hadi yig'indisini toping.", answer: "26", options: ["26", "24", "20", "18"], source: "Sn formulasi yoki 2+6+18", cat: "algebra" },
+            { id: 38, q: "|x - 3| = 5 tenglamaning ildizlari yig'indisini toping.", answer: "6", options: ["6", "8", "2", "0"], source: "x-3=5 va x-3=-5 ildizlari 8 va -2", cat: "algebra" },
+            { id: 39, q: "f(x) = x² - 4x + 5 funksiyaning eng kichik qiymatini toping.", answer: "1", options: ["1", "5", "2", "0"], source: "Parabola uchi koordinatasi x₀=-b/2a", cat: "algebra" },
+            { id: 40, q: "x + y = 5 va x - y = 1 tenglamalar sistemasidan x*y ko'paytmani toping.", answer: "6", options: ["6", "5", "4", "3"], source: "Sistemadan x=3, y=2 kelib chiqadi", cat: "algebra" },
+            { id: 41, q: "4^x - 5*2^x + 4 = 0 tenglamaning ildizlari yig'indisini toping.", answer: "2", options: ["2", "1", "0", "3"], source: "Belgilash kiritish: 2^x = t", cat: "algebra" },
+            { id: 42, q: "f(x) = 3x² - 2x + 1 funksiyaning hosilasini toping.", answer: "6x - 2", options: ["6x - 2", "3x - 2", "6x", "6x + 2"], source: "Differensiallash qoidalari", cat: "algebra" },
+            { id: 43, q: "∫(2x)dx aniqmas integralni hisoblang.", answer: "x² + C", options: ["x² + C", "2x² + C", "x²", "2 + C"], source: "Boshlang'ich funksiya topish", cat: "algebra" },
+            { id: 44, q: "Kvadrat tenglamaning diskriminanti D > 0 bo'lsa, u nechta haqiqiy ildizga ega?", answer: "2 ta", options: ["2 ta", "1 ta", "ildizga ega emas", "cheksiz ko'p"], source: "Diskriminant xossalari", cat: "algebra" },
+            { id: 45, q: "sin²α + cos²α ifodaning qiymati nimaga teng?", answer: "1", options: ["1", "0", "-1", "2"], source: "Trigonometriyaning asosiy ayniyati", cat: "algebra" },
+            { id: 46, q: "tgα * ctgα ifoda har doim nimaga teng?", answer: "1", options: ["1", "0", "sinα", "cosα"], source: "Trigonometrik funksiyalar ko'paytmasi", cat: "algebra" },
+            { id: 47, q: "cos(2α) formulasi qaysi qatorda to'g'ri ko'rsatilgan?", answer: "cos²α - sin²α", options: ["cos²α - sin²α", "cos²α + sin²α", "2cosα", "1 - 2cos²α"], source: "Ikkilangan burchak formulasi", cat: "algebra" },
+            { id: 48, q: "x / (x - 1) ≥ 0 tengsizlikning yechimini toping.", answer: "(-∞; 0] ∪ (1; ∞)", options: ["(-∞; 0] ∪ (1; ∞)", "[0; 1]", "(0; 1)", "(-∞; 0)"], source: "Intervollar metodi", cat: "algebra" },
+            { id: 49, q: "f(x) = ln(x) funksiyaning aniqlanish sohasini toping.", answer: "(0; ∞)", options: ["(0; ∞)", "[0; ∞)", "(-∞; ∞)", "(-∞; 0)"], source: "Logarifmik funksiya xossasi", cat: "algebra" },
+            { id: 50, q: "2x - 4 < 0 tengsizlikning eng katta butun yechimini toping.", answer: "1", options: ["1", "2", "0", "-1"], source: "x < 2 dan eng katta butun son 1", cat: "algebra" },
+
+            // Arifmetika va Sonlar nazariyasi
+            { id: 51, q: "145! (Faktorial) sonining oxirida nechta nol bor?", answer: "35", options: ["35", "24", "16", "22"], source: "5 ga bo'lish qoidasi (145/5 + 145/25 + 145/125)", cat: "arifmetika" },
+            { id: 52, q: "EKUB (529, 1541, 1817) ni toping.", answer: "23", options: ["23", "21", "15", "17"], source: "Tub ko'paytuvchilarga ajratish yordamida", cat: "arifmetika" },
+            { id: 53, q: "Quyidagi sonlardan qaysi biri 3 ga ham, 5 ga ham qoldıqsiz bo'linadi?", answer: "135", options: ["135", "124", "155", "230"], source: "Raqamlar yig'indisi 3 ga va oxiri 5 yoki 0 bilan tugashi", cat: "arifmetika" },
+            { id: 54, q: "Dastlabki 10 ta natural sonlarning yig'indisini toping.", answer: "55", options: ["55", "45", "50", "60"], source: "n*(n+1)/2 formulasi", cat: "arifmetika" },
+            { id: 55, q: "12 va 18 sonlarining eng kichik umumiy karralisini (EKUK) toping.", answer: "36", options: ["36", "72", "54", "18"], source: "EKUK topish algoritmi", cat: "arifmetika" },
+            { id: 56, q: "70 ning 20 foizini toping.", answer: "14", options: ["14", "20", "7", "21"], source: "70 * 0.20 = 14", cat: "arifmetika" },
+            { id: 57, q: "Sonning 3/4 qismi 60 ga teng bo'lsa, shu sonning o'zini toping.", answer: "80", options: ["80", "45", "75", "90"], source: "60 / 3 * 4 = 80", cat: "arifmetika" },
+            { id: 58, q: "Qaysi qatorda faqat tub sonlar berilgan?", answer: "2, 3, 5, 7, 11", options: ["2, 3, 5, 7, 11", "1, 2, 3, 5, 7", "2, 4, 6, 8", "3, 5, 9, 11"], source: "Tub sonlar ta'rifi", cat: "arifmetika" },
+            { id: 59, q: "Kasrni hisoblang: 1/2 + 1/3", answer: "5/6", options: ["5/6", "2/5", "1/5", "7/6"], source: "Umumiy maxraj berish", cat: "arifmetika" },
+            { id: 60, q: "Proprosiyaning noma'lum hadini toping: 2 / 5 = x / 20", answer: "8", options: ["8", "10", "4", "12"], source: "Xochsimon ko'paytirish qoidasi", cat: "arifmetika" },
+            { id: 61, q: "O'zaro tub sonlar juftligini ko'rsating.", answer: "8 va 15", options: ["8 va 15", "9 va 12", "4 va 6", "10 va 25"], source: "Umumiy bo'luvchisi faqat 1 ga teng sonlar", cat: "arifmetika" },
+            { id: 62, q: "Ikki sonning yig'indisi 40 ga, ayirmasi esa 10 ga teng. Shu sonlardan kattasini toping.", answer: "25", options: ["25", "15", "20", "30"], source: "(40 + 10) / 2 = 25", cat: "arifmetika" },
+            { id: 63, q: "Aylanma harakatda soat mili 3 soatda necha gradusga buriladi?", answer: "90°", options: ["90°", "180°", "45°", "120°"], source: "Har bir soat 30 gradusga mos keladi", cat: "arifmetika" },
+            { id: 64, q: "Arifmetik amalni bajaring: (-5) * (-3) + (-2)", answer: "13", options: ["13", "-17", "17", "-13"], source: "Amallar bajarilish tartibi", cat: "arifmetika" },
+            { id: 65, q: "Sutkaning 1/4 qismi necha soatdan iborat?", answer: "6 soat", options: ["6 soat", "4 soat", "8 soat", "12 soat"], source: "24 / 4 = 6 soat", cat: "arifmetika" },
+            { id: 66, q: "Kvadratning perimetri 36 sm bo'lsa, uning yuzini toping.", answer: "81 sm²", options: ["81 sm²", "36 sm²", "16 sm²", "64 sm²"], source: "Tomoni a=9, S=a²=81", cat: "arifmetika" },
+            { id: 67, q: "3 toshbaqa 3 minutda 3 metr yursa, 5 toshbaqa 5 minutda necha metr yuradi?", answer: "5 metr", options: ["5 metr", "3 metr", "25 metr", "15 metr"], source: "Murakkab uchlik qoidasi matni", cat: "arifmetika" },
+            { id: 68, q: "O'rtacha arifmetik qiymatni toping: 10, 20, 30, 40", answer: "25", options: ["25", "20", "30", "35"], source: "(10+20+30+40)/4 = 25", cat: "arifmetika" },
+            { id: 69, q: "Tenglamani yeching: 3x - 7 = 11", answer: "6", options: ["6", "4", "5", "7"], source: "3x = 18 dan x = 6", cat: "arifmetika" },
+            { id: 70, q: "Yig'indini hisoblang: 0.25 + 0.75", answer: "1", options: ["1", "0.5", "1.25", "0.99"], source: "O'nli kasrlarni qo'shish", cat: "arifmetika" },
+
+            // Metodika va O'qitish nazariyasi
+            { id: 71, q: "Matematika darslarida muammoli ta'lim metodining maqsadi nima?", answer: "O'quvchilarda mustaqil fikrlash va izlanish ko'nikmasini rivojlantirish", options: ["O'quvchilarda mustaqil fikrlash va izlanish ko'nikmasini rivojlantirish", "Faqat formulalarni yodlatish", "Dars vaqtini tejash", "O'quvchilarni imtihondan o'tkazish"], source: "Pedagogik texnologiyalar darsligi", cat: "metodika" },
+            { id: 72, q: "Matematik tushunchani induktiv usulda tushuntirish nima?", answer: "Xususiy misollardan umumiy qoidaga qarab borish", options: ["Xususiy misollardan umumiy qoidaga qarab borish", "Umumiy qoidadan misollarga qarab borish", "Faqat tayyor teoremalarni isbotlash", "Grafik chizmalar bilan ishlash"], source: "Metodika asoslari", cat: "metodika" },
+            { id: 73, q: "Deduktiv metodga xos xususiyatni ko'rsating.", answer: "Umumiy qoidadan xususiy xulosaga kelish", options: ["Umumiy qoidadan xususiy xulosaga kelish", "Tajriba o'tkazish orqali qoida yaratish", "Savol-javob darsi", "Guruhlarda ishlash"], source: "Mantiq va metodika", cat: "metodika" },
+            { id: 74, q: "Matematika o'qitishda ko'rgazmalilik tamoyili qanday amalga oshiriladi?", answer: "Geometrik modellar, slaydlar va chizmalardan foydalanish orqali", options: ["Geometrik modellar, slaydlar va chizmalardan foydalanish orqali", "Faqat matnli masalalar yechish orqali", "O'qituvchining ma'ruzasi orqali", "Uy vazifasini tekshirish bilan"], source: "Didaktika prinsiplari", cat: "metodika" },
+            { id: 75, q: "O'quvchilarning matematik qobiliyatlarini rivojlantirishda eng samarali vosita qaysi?", answer: "Murakkablik darajasi turlicha bo'lgan nostandart masalalar", options: ["Murakkablik darajasi turlicha bo'lgan nostandart masalalar", "Bir xil turdagi ko'plab misollar yechish", "Darslikni to'liq ko'chirib yozish", "Faqat test variantlarini yechish"], source: "Iqtidorli bolalar bilan ishlash", cat: "metodika" },
+            { id: 76, q: "Matematik masalani yechishning necha asosiy bosqichi bor (Polya metodi bo'yicha)?", answer: "4 ta", options: ["4 ta", "3 ta", "5 ta", "2 ta"], source: "D. Polya 'Masala yechish san'ati'", cat: "metodika" },
+            { id: 77, q: "Polya metodi bo'yicha masalani yechishning birinchi bosqichi qaysi?", answer: "Masala shartini tushunish", options: ["Masala shartini tushunish", "Yechish rejasini tuzish", "Rejani amalga oshirish", "Tekshirish va xulosa qilish"], source: "Metodik tavsiyalar", cat: "metodika" },
+            { id: 78, q: "Matematika darsida 'Klastor' (tarmoqlar) interfaol metodidan qay maqsadda foydalaniladi?", answer: "Mavzuga oid tushunchalarni tizimlashtirish va aloqalarni ko'rsatish uchun", options: ["Mavzuga oid tushunchalarni tizimlashtirish va aloqalarni ko'rsatish uchun", "Tez hisoblashni o'rgatish uchun", "Formulalarni yodlash uchun", "O'quvchilarni baholash uchun"], source: "Interfaol metodlar to'plami", cat: "metodika" },
+            { id: 79, q: "Matematik masalalarni yechishda 'analiz' metodi nima?", answer: "Noma'lumdan ma'lumga qarab fikr yuritish", options: ["Noma'lumdan ma'lumga qarab fikr yuritish", "Ma'lumdan noma'lumga qarab borish", "Faqat sonli hisoblashlar bajarish", "Chizmani chizish bosqichi"], source: "Yechish usullari", cat: "metodika" },
+            { id: 80, q: "Matematik masalalarni yechishda 'sintez' metodi nima?", answer: "Ma'lum ma'lumotlardan noma'lumga qarab borish", options: ["Ma'lum ma'lumotlardan noma'lumga qarab borish", "Noma'lumdan ma'lumga qaytish", "Masalani qismlarga ajratish", "Taxminiy javobni tekshirish"], source: "Metodik atamalar lutfi", cat: "metodika" },
+            { id: 81, q: "O'quvchida fazoviy tasavvurni shakllantirish qaysi bo'limning asosiy vazifasi?", answer: "Stereometriya", options: ["Stereometriya", "Planimetriya", "Trigonometriya", "Arifmetika"], source: "Geometriya metodikasi", cat: "metodika" },
+            { id: 82, q: "Matematik diktant darsning qaysi bosqichida o'tkazilishi maqsadga muvofiq?", answer: "O'tilgan mavzuni takrorlash va bilimlarni tekshirish bosqichida", options: ["O'tilgan mavzuni takrorlash va bilimlarni tekshirish bosqichida", "Yangi mavzuni tushuntirish paytida", "Darsning eng oxirgi daqiqasida", "Uyga vazifa berish jarayonida"], source: "Dars strukturasi", cat: "metodika" },
+            { id: 83, q: "Matematika fanini o'qitishda integratsiyalashgan dars nima?", answer: "Ikki yoki undan ortiq fanning o'zaro bog'liqlikda o'tilishi", options: ["Ikki yoki undan ortiq fanning o'zaro bog'liqlikda o'tilishi", "Faqat misol yechiladigan dars", "Ikki soat davom etadigan dars", "Ota-onalar ishtirokidagi dars"], source: "Zamonaviy ta'lim", cat: "metodika" },
+            { id: 84, q: "Formulalarni grafik ko'rinishda tasvirlash qanday ataladi?", answer: "Vizuallashtirish", options: ["Vizuallashtirish", "Abstraktlashtirish", "Algoritmlash", "Modellashtirish"], source: "Metodik atamalar", cat: "metodika" },
+            { id: 85, q: "Matematik modellashtirish nima?", answer: "Haqiqiy hayotiy jarayonni matematik tilda (tenglama, formula) ifodalash", options: ["Haqiqiy hayotiy jarayonni matematik tilda (tenglama, formula) ifodalash", "Geometrik shakllarni qog'ozdan yasash", "Doskada chiroyli chizmalar chizish", "Kompyuterda hisoblash dasturini tuzish"], source: "Amaliy matematika", cat: "metodika" },
+            { id: 86, q: "O'quvchining matematik savodxonligi nima bilan o'lchanadi?", answer: "Matematik bilimlarni hayotiy vaziyatlarda qo'llay olish qobiliyati bilan", options: ["Matematik bilimlarni hayotiy vaziyatlarda qo'llay olish qobiliyati bilan", "Yod olgan teoremalari soni bilan", "Misolni qanchalik tez yozishi bilan", "Chizmachilik asboblaridan foydalanishi bilan"], source: "PISA xalqaro baholash dasturi", cat: "metodika" },
+            { id: 87, q: "PISA xalqaro baholash dasturida qaysi yo'nalish tekshiriladi?", answer: "Matematik savodxonlik va amaliy qo'llash", options: ["Matematik savodxonlik va amaliy qo'llash", "Faqat qiyin olimpiada masalalari", "Tarixiy ma'lumotlarni bilish", "Formulalarni yoddan isbotlash"], source: "Xalqaro standartlar", cat: "metodika" },
+            { id: 88, q: "Matematika darsida refleksiyaning maqsadi nima?", answer: "O'quvchining dars davomidagi o'z faoliyatini tahlil qilishi va baholashi", options: ["O'quvchining dars davomidagi o'z faoliyatini tahlil qilishi va baholashi", "Yangi mavzuni boshlash", "Sinfda tinchlikni saqlash", "Doskani tozalash"], source: "Pedagogik texnologiya", cat: "metodika" },
+            { id: 89, q: "Matematika ta'limida STEAM yondashuvining maqsadi nima?", answer: "Fanlarni texnologiya va muhandislik bilan uzviy bog'lab o'qitish", options: ["Fanlarni texnologiya va muhandislik bilan uzviy bog'lab o'qitish", "Faqat nazariyani o'rgatish", "Darsliklarni kamaytirish", "Imtihonlarni bekor qilish"], source: "Inovatsion ta'lim", cat: "metodika" },
+            { id: 90, q: "Algoritm nima?", answer: "Natijaga erishish uchun bajarilishi kerak bo'lgan aniq ketma-ketlik", options: ["Natijaga erishish uchun bajarilishi kerak bo'lgan aniq ketma-ketlik", "Ixtiyoriy tartibdagi amallar", "Faqat kompyuter kodi", "Murakkab geometrik shakl"], source: "Algoritmlash asoslari", cat: "metodika" },
+            { id: 91, q: "Aksioma nima?", answer: "Isbotsiz qabul qilinadigan to'g'ri tasdiq", options: ["Isbotsiz qabul qilinadigan to'g'ri tasdiq", "Isbot talab qiladigan teorema", "Matematik formula", "Noto'g'ri faraz"], source: "Geometriya asoslari", cat: "metodika" },
+            { id: 92, q: "Teorema nima?", answer: "Mantiqiy isbot talab qiladigan matematik tasdiq", options: ["Mantiqiy isbot talab qiladigan matematik tasdiq", "Isbotsiz tasdiq", "Faqat ta'rif", "Masala sharti"], source: "Geometriya asoslari", cat: "metodika" },
+            { id: 93, q: "Matematik mantiqda 'Inkor' amali nimani anglatadi?", answer: "Tasdiqni teskarisiga o'zgartirish", options: ["Tasdiqni teskarisiga o'zgartirish", "Ikki tasdiqni qo'shish", "Xatolarni qidirish", "Isbotni yakunlash"], source: "Matematik mantiq", cat: "metodika" },
+            { id: 94, q: "Kvadrat tenglamani yechish algoritmini birinchi bo'lib tizimli bayon qilgan olim kim?", answer: "Al-Xorazmiy", options: ["Al-Xorazmiy", "Abu Rayhon Beruniy", "Pifagor", "Evklid"], source: "Matematika tarixi", cat: "metodika" },
+            { id: 95, q: "O'quvchilarning matematik tafakkurini rivojlantirishda 'Flipped Classroom' (To'ntarilgan sinf) metodining mohiyati nimada?", answer: "Nazariyani uyda o'rganib, darsda faqat amaliy masalalar yechish", options: ["Nazariyani uyda o'rganib, darsda faqat amaliy masalalar yechish", "Darsda uxlash, uyda o'qish", "O'qituvchisiz dars o'tish", "Imtihon savollarini oldindan berish"], source: "Zamonaviy metodlar", cat: "metodika" },
+            { id: 96, q: "Geometriyani tizimli bayon qilgan elementlar asari muallifi kim?", answer: "Evklid", options: ["Evklid", "Arximed", "Pifagor", "Fales"], source: "Geometriya tarixi", cat: "metodika" },
+            { id: 97, q: "Matematika darsida formativ baholash nima uchun xizmat qiladi?", answer: "O'quv jarayonini doimiy kuzatish va rivojlantirib borish uchun", options: ["O'quv jarayonini doimiy kuzatish va rivojlantirib borish uchun", "Choraklik yakuniy baho qo'yish uchun", "O'quvchini sinfdan qoldirish uchun", "Reyting aniqlash uchun"], source: "Baholash mezonlari", cat: "metodika" },
+            { id: 98, q: "Matematika darsida summativ baholash qachon o'tkaziladi?", answer: "Mavzu, chorak yoki yil yakunida bilimlarni umumlashtirish uchun", options: ["Mavzu, chorak yoki yil yakunida bilimlarni umumlashtirish uchun", "Har bir dars boshida", "Faqat uy vazifasini tekshirganda", "Dars o'rtasidagi tanaffusda"], source: "Baholash mezonlari", cat: "metodika" },
+            { id: 99, q: "O'quvchilarda interfaol o'yinlar orqali matematik hisoblashni shakllantirish qanday nomlanadi?", answer: "Gamifikatsiya (O'yinlashtirish)", options: ["Gamifikatsiya (O'yinlashtirish)", "Abstraktlashtirish", "Sintezlash", "Algoritmlash"], source: "Pedagogik innovatsiyalar", cat: "metodika" },
+            { id: 100, q: "Matematik masalani 'teskari usul' bilan yechish nima?", answer: "Natija yoki javobdan boshlab masala shartiga qarab borish", options: ["Natija yoki javobdan boshlab masala shartiga qarab borish", "Hech narsani hisoblamaslik", "Masalani boshqa o'quvchiga berish", "Faqat chizmani o'zini qoldirish"], source: "Evristik usullar", cat: "metodika" }
+        ];
+
+        // STATE MANAGER
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let quizMode = 'study';
+        let examTimerInterval = null;
+        let examSecondsLeft = 3600;
+        let examAnswers = {};
+        let studyResults = {};
+        let bookmarkedQuestionIds = JSON.parse(localStorage.getItem('bookmarked_metodika_questions') || '[]');
+
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        window.onload = function() {
+            updateThemeToggleButton();
+            loadStateFromLocalStorage();
+            filterQuestions();
+        }
+
+        function loadStateFromLocalStorage() {
+            const savedStudyResults = localStorage.getItem('metodika_study_results');
+            if (savedStudyResults) studyResults = JSON.parse(savedStudyResults);
+        }
+
+        function saveStateToLocalStorage() {
+            localStorage.setItem('metodika_study_results', JSON.stringify(studyResults));
+            localStorage.setItem('bookmarked_metodika_questions', JSON.stringify(bookmarkedQuestionIds));
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function shuffleCurrentQuestions() {
+            activeQuestions = shuffleArray(activeQuestions);
+            activeQuestions.forEach(q => q.options = shuffleArray([...q.options]));
+            currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        function filterQuestions() {
+            const cat = document.getElementById('categoryFilter').value;
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            activeQuestions = quizData.filter(q => {
+                const matchCat = (cat === 'all') || (cat === q.cat) || (cat === 'bookmarked' && bookmarkedQuestionIds.includes(q.id));
+                const matchQuery = q.q.toLowerCase().includes(query) || q.options.some(o => o.toLowerCase().includes(query));
+                return matchCat && matchQuery;
+            });
+
+            document.getElementById('filteredCountBadge').innerText = `${activeQuestions.length} / 100`;
+            currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('optionsListContainer');
+            const explanationCard = document.getElementById('explanationCard');
+            
+            if (activeQuestions.length === 0) {
+                document.getElementById('questionTextDisplay').innerText = "Savol topilmadi! Qidiruv shartlarini o'zgartiring.";
+                document.getElementById('questionIndexBadge').innerText = "SAVOL 0";
+                container.innerHTML = `<div class="p-4 text-center text-slate-400">Ro'yxat bo'sh</div>`;
+                explanationCard.classList.add('hidden');
+                return;
+            }
+
+            const current = activeQuestions[currentIndex];
+            document.getElementById('questionIndexBadge').innerText = `SAVOL ${currentIndex + 1} / ${activeQuestions.length}`;
+            document.getElementById('questionSourceBadge').innerText = `ID: #${current.id}`;
+            document.getElementById('questionTextDisplay').innerText = current.q;
+
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            if (bookmarkedQuestionIds.includes(current.id)) {
+                bookmarkBtn.className = "w-9 h-9 flex items-center justify-center rounded-full bg-amber-500 text-white";
+            } else {
+                bookmarkBtn.className = "w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100 text-slate-300";
+            }
+
+            container.innerHTML = "";
+            explanationCard.classList.add('hidden');
+
+            const studyAns = studyResults[current.id];
+            const examAns = examAnswers[current.id];
+
+            current.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold transition-all hover:bg-slate-50 dark:hover:bg-slate-700 flex justify-between items-center";
+                btn.innerText = opt;
+
+                if (quizMode === 'study') {
+                    if (studyAns) {
+                        btn.disabled = true;
+                        if (opt === current.answer) {
+                            btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+                        } else if (opt === studyAns.selectedOption) {
+                            btn.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+                        }
+                    } else {
+                        btn.onclick = () => selectOptionStudy(opt, current);
+                    }
+                } else {
+                    if (examAns === opt) {
+                        btn.classList.add('bg-brand-500', 'text-white', 'border-brand-600');
+                    }
+                    btn.onclick = () => selectOptionExam(opt, current);
+                }
+                container.appendChild(btn);
+            });
+
+            if (quizMode === 'study' && studyAns) {
+                explanationCard.classList.remove('hidden');
+                document.getElementById('explanationTextDisplay').innerText = current.source || "Ushbu savol uchun qo'shimcha metodik ma'lumot kiritilmagan.";
+            }
+        }
+
+        function selectOptionStudy(opt, question) {
+            studyResults[question.id] = {
+                correct: opt === question.answer,
+                selectedOption: opt
+            };
+            saveStateToLocalStorage();
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        function selectOptionExam(opt, question) {
+            examAnswers[question.id] = opt;
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        function renderQuestionMap() {
+            const container = document.getElementById('questionsMapContainer');
+            container.innerHTML = "";
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "h-9 w-full rounded-lg font-bold text-xs transition-all flex items-center justify-center border border-slate-200 dark:border-slate-700";
+                btn.innerText = idx + 1;
+
+                if (idx === currentIndex) {
+                    btn.classList.add('ring-2', 'ring-brand-500', 'scale-105');
+                }
+
+                if (quizMode === 'study') {
+                    const ans = studyResults[q.id];
+                    if (ans) {
+                        btn.classList.add(ans.correct ? 'bg-emerald-500' : 'bg-rose-500', 'text-white');
+                    }
+                } else {
+                    if (examAnswers[q.id]) {
+                        btn.classList.add('bg-yellow-500', 'text-slate-900');
+                    }
+                }
+
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuiz();
+                    renderQuestionMap();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function navigateToQuestion(dir) {
+            currentIndex += dir;
+            if (currentIndex < 0) currentIndex = activeQuestions.length - 1;
+            if (currentIndex >= activeQuestions.length) currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        function changeQuizMode(mode) {
+            quizMode = mode;
+            document.getElementById('modeStudyBtn').className = mode === 'study' ? 'flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-800 text-brand-500 shadow-sm' : 'flex-1 py-2 text-xs font-bold rounded-lg text-slate-500';
+            document.getElementById('modeExamBtn').className = mode === 'exam' ? 'flex-1 py-2 text-xs font-bold rounded-lg bg-white dark:bg-slate-800 text-brand-500 shadow-sm' : 'flex-1 py-2 text-xs font-bold rounded-lg text-slate-500';
+
+            if (mode === 'exam') {
+                document.getElementById('examTimerContainer').classList.remove('hidden');
+                document.getElementById('examSubmitBtn').classList.remove('hidden');
+                startExamTimer();
+            } else {
+                document.getElementById('examTimerContainer').classList.add('hidden');
+                document.getElementById('examSubmitBtn').classList.add('hidden');
+                clearInterval(examTimerInterval);
+            }
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        function startExamTimer() {
+            clearInterval(examTimerInterval);
+            examSecondsLeft = 3600;
+            examTimerInterval = setInterval(() => {
+                examSecondsLeft--;
+                if (examSecondsLeft <= 0) {
+                    clearInterval(examTimerInterval);
+                    finishExamMode();
+                }
+                const mins = Math.floor(examSecondsLeft / 60);
+                const secs = examSecondsLeft % 60;
+                document.getElementById('examTimerText').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function updateStats() {
+            if (quizMode === 'study') {
+                const total = quizData.length;
+                const solved = Object.keys(studyResults).length;
+                const correct = Object.values(studyResults).filter(r => r.correct).length;
+                const wrong = solved - correct;
+                const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+                document.getElementById('correctCountText').innerText = correct;
+                document.getElementById('wrongCountText').innerText = wrong;
+                document.getElementById('progressBarPercentage').innerText = `${percent}%`;
+                document.getElementById('progressBarFill').style.width = `${percent}%`;
+                document.getElementById('answeredRatioText').innerText = `Yechildi: ${solved} / ${total}`;
+            } else {
+                const total = activeQuestions.length;
+                const solved = Object.keys(examAnswers).length;
+                document.getElementById('answeredRatioText').innerText = `Belgilandi: ${solved} / ${total}`;
+            }
+            document.getElementById('bookmarkCountText').innerText = bookmarkedQuestionIds.length;
+        }
+
+        function toggleBookmarkActiveQuestion() {
+            if (activeQuestions.length === 0) return;
+            const current = activeQuestions[currentIndex];
+            const idx = bookmarkedQuestionIds.indexOf(current.id);
+            if (idx > -1) {
+                bookmarkedQuestionIds.splice(idx, 1);
+            } else {
+                bookmarkedQuestionIds.push(current.id);
+            }
+            saveStateToLocalStorage();
+            renderQuiz();
+            updateStats();
+        }
+
+        function resetQuizState() {
+            if(confirm("Barcha yechimlar va natijalarni o'chirmoqchimisiz?")) {
+                studyResults = {};
+                examAnswers = {};
+                localStorage.removeItem('metodika_study_results');
+                updateStats();
+                renderQuiz();
+                renderQuestionMap();
+            }
+        }
+
+        function finishExamPrompt() {
+            if (confirm("Imtihonni yakunlab, natijalarni tekshirishni xohlaysizmi?")) {
+                finishExamMode();
+            }
+        }
+
+        function finishExamMode() {
+            clearInterval(examTimerInterval);
+            let correct = 0;
+            let incorrect = 0;
+
+            quizData.forEach(q => {
+                const ans = examAnswers[q.id];
+                if (ans) {
+                    if (ans === q.answer) {
+                        correct++;
+                    } else {
+                        incorrect++;
+                    }
+                    studyResults[q.id] = {
+                        correct: ans === q.answer,
+                        selectedOption: ans
+                    };
+                }
+            });
+
+            document.getElementById('modalCorrect').innerText = correct;
+            document.getElementById('modalIncorrect').innerText = incorrect;
+            document.getElementById('examResultModal').classList.remove('hidden');
+            saveStateToLocalStorage();
+        }
+
+        function closeModalAndReset() {
+            document.getElementById('examResultModal').classList.add('hidden');
+            examAnswers = {};
+            changeQuizMode('study');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+            updateThemeToggleButton();
+        }
+
+        function updateThemeToggleButton() {
+            const icon = document.getElementById('themeIcon');
+            if (document.documentElement.classList.contains('dark')) {
+                icon.className = "fa-solid fa-sun";
+            } else {
+                icon.className = "fa-solid fa-moon";
+            }
+        }
+    </script>
+</body>
+</html>
